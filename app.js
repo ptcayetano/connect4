@@ -34,5 +34,5 @@ fs.readdir('.', function (err, folders) {
     });
 });
 
-app.listen(5555);
+app.listen(3000);
 console.log('Welcome to Connect4! Node server running on http://localhost: 5555');
