@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jasmine Spec Runner v2.4.1</title>
+
+        <link rel="shortcut icon" type="image/png" href="jasmine-2.4.1/jasmine_favicon.png">
+        <link rel="stylesheet" href="jasmine-2.4.1/jasmine.css">
+
+        <script src="jasmine-2.4.1/jasmine.js"></script>
+        <script src="jasmine-2.4.1/jasmine-html.js"></script>
+        <script src="jasmine-2.4.1/boot.js"></script>
+
+        <!-- include spec files here... -->
+        <script src="spec/connect4_spec.js"></script>
+        <script src="spec/player_spec.js"></script>
+        <script src="spec/gameboard_view_spec.js"></script>
+
+        <!--<script type="text/javascript">
+            (function() {
+                var jasmineEnv = jasmine.getEnv();
+                    jasmineEnv.updateInterval = 1000;
+                var htmlReporter = new jasmine.HtmlReporter();
+                    jasmineEnv.addReporter(htmlReporter);
+                    jasmineEnv.specFilter = function(spec) {
+                        return htmlReporter.specFilter(spec);
+                    };
+                var currentWindowOnload = window.onload;
+                window.onload = function() {
+                    if (currentWindowOnload) {
+                        currentWindowOnload();
+                    }
+                    execJasmine();
+                };
+                
+                function execJasmine() {
+                    Ext.onReady(function() {
+                        jasmineEnv.execute();
+                    });
+                }
+            })();
+        </script>-->
+    </head>
+    <body>
+        <div id="connect4" class="container app-container">
+            <div class="header app-header">
+                <div class="app-title">CONNECT 4</div>  
+            </div>
+
+            <div class="gameboard-panel center">
+                <div class="board col-xs-1 col-sm-3 col-md-4 col-lg-4"></div>
+                <div id="gameboard" class="board gameboard col-xs-10 col-sm-7 col-md-4 col-lg-3"></div>
+                <div class="board col-xs-1 col-sm-3 col-md-4 col-lg-4"></div>
+            </div>
+        </div>
+
+        <!-- include source files here... -->
+        <script src="../js/libs/jquery.min.js"></script>
+        <script src="../js/libs/underscore.js"></script>
+        <script src="../js/libs/backbone-min.js"></script>
+        <script src="../js/libs/modernizr-2.8.3.min.js"></script>
+        
+        <script src="../js/utils.js"></script>
+        <script src="../js/connect4.js"></script>
+        <script src="../js/models/player.js"></script>
+        <script src="../js/views/gameboard_view.js"></script>
+    </body>
+</html>

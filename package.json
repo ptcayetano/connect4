@@ -1,0 +1,12 @@
+{
+  "name": "AutoExec",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "~4"
+},
+  "scripts": {
+    "start": "node app.js"
+  }
+}
