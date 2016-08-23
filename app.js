@@ -34,5 +34,6 @@ fs.readdir('.', function (err, folders) {
     });
 });
 
-app.listen(3000);
-console.log('Welcome to Connect4! Node server running on http://localhost: 3000');
+var port = process.env.PORT || 5000;
+app.listen(port);
+console.log('Welcome to Connect4! Node server running on http://localhost: ' + port);
