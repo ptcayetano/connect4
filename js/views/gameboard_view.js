@@ -43,7 +43,7 @@ C4.view.GameboardView = (function() {
      * renders info box
      */
     var _renderInfobox = function() {
-        return _infobox = "<div class='infobox hidden'></div><div class='play-again clickable hidden'><a href='/'>play again</a></div>";
+        return _infobox = "<div class='infobox hidden'></div><div class='play-again clickable hidden'><a href='#'>play again</a></div>";
     }
 
     /**
@@ -65,7 +65,8 @@ C4.view.GameboardView = (function() {
         events: {
             "mouseover .move-grid": "focusMove",
             "mouseout .move-grid": "outMove",
-            "click .move-grid": "makeMove"
+            "click .move-grid": "makeMove",
+            "click .play-again a": "reset"
         },
 
         initialize: function() {
@@ -75,9 +76,6 @@ C4.view.GameboardView = (function() {
 
             this.registerPlayer();
             this.render();
-
-            this.listenTo(this.player1, "move", this.placeToken);
-            this.listenTo(this.player2, "move", this.placeToken);
         },
 
         render: function() {
@@ -88,11 +86,26 @@ C4.view.GameboardView = (function() {
             $(this.el).html(board);
         },
 
+        reset: function(e) {
+            $('.board-grid.token-grid').data('active', false).removeClass('player1 player2');
+            $('.move-grid').removeClass('hidden');
+            $('.infobox').addClass('hidden').html('');
+            $('.play-again').addClass('hidden');
+
+            this.winner = null;
+            this.activePlayer = this.player1;
+
+            Utils.debug("The game was reset!");
+        },
+
         registerPlayer: function() {
             this.player1 = new C4.model.Player({name: "Player 1", id: "player1", color: "#3399ff"});
             this.player2 = new C4.model.Player({name: "Player 2", id: "player2", color: "#ff9900"});
 
             this.activePlayer = this.player1;
+
+            this.listenTo(this.player1, "move", this.placeToken);
+            this.listenTo(this.player2, "move", this.placeToken);
         },
 
         checkWinner: function() {
@@ -285,7 +298,7 @@ C4.view.GameboardView = (function() {
         },
 
         announceDraw: function() {
-            var msg = "It's a draw!"
+            var msg = "It's a draw!";
             this.winner = null;
 
             Utils.debug(msg);
