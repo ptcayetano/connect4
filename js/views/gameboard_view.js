@@ -264,7 +264,6 @@ C4.view.GameboardView = (function() {
                 // it's a draw
                 this.announceDraw();
             }
-            console.log(total_grid, total_occupied_player1, total_occupied_player2)
         },
 
         toggleInfobox: function(msg) {
