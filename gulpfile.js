@@ -22,7 +22,7 @@ gulp.task("minify", function() {
         .pipe(gulp.dest("public/js/"));
 
     gulp.src(["js/utils.js", "js/connect4.js", "js/models/*.js", "js/views/*.js"])
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('main.js'))
         .pipe(gulp.dest('public/js/'));
 });
