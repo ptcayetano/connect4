@@ -106,81 +106,105 @@ describe("Gameboard View.", function() {
                 expect($("#grid-5-2").hasClass(player_id)).toEqual(true);
             });
         });
+    });
 
-        describe("and checking a winner", function() {
-            var player_id, gameboard;
+    
+    describe("Checking a winner", function() {
+        var player_id, gameboard;
+        beforeEach(function() {
+            gameboard = new C4.view.GameboardView();
+            gameboard.activePlayer = gameboard.player2;
+            player_id = gameboard.activePlayer.get('id');
+        });
+
+        describe("on horizontal row", function() {
             beforeEach(function() {
-                gameboard = new C4.view.GameboardView();
-                gameboard.activePlayer = gameboard.player2;
-                player_id = gameboard.activePlayer.get('id');
+                $("#grid-0-5").data('active', true).addClass(player_id);
+                $("#grid-1-5").data('active', true).addClass(player_id);
+                $("#grid-2-5").data('active', true).addClass(player_id);
+                $("#grid-3-5").data('active', true).addClass(player_id);
+                gameboard.checkWinner();
+            });
+            it("should determine the winnner", function() {
+                expect(gameboard.winner.id).toEqual(player_id);
             });
 
-            describe("on horizontal row", function() {
-                beforeEach(function() {
-                    $("#grid-0-5").data('active', true).addClass(player_id);
-                    $("#grid-1-5").data('active', true).addClass(player_id);
-                    $("#grid-2-5").data('active', true).addClass(player_id);
-                    $("#grid-3-5").data('active', true).addClass(player_id);
-                    gameboard.checkWinner();
-                });
-                it("should determine the winnner", function() {
-                    expect(gameboard.winner.id).toEqual(player_id);
-                });
+            it("should end the game and show the winner", function() {
+                expect($('.infobox').hasClass('hidden')).toEqual(false);
+                expect($('.move-grid').hasClass('hidden')).toEqual(true);
+            });
+        });
+        describe("on vertical", function() {
+            beforeEach(function() {
+                $("#grid-2-5").data('active', true).addClass(player_id);
+                $("#grid-2-4").data('active', true).addClass(player_id);
+                $("#grid-2-3").data('active', true).addClass(player_id);
+                $("#grid-2-2").data('active', true).addClass(player_id);
+                gameboard.checkWinner();
+            });
+            it("should determine the winnner", function() {
+                expect(gameboard.winner.id).toEqual(player_id);
+            });
+            it("should end the game and show the winner", function() {
+                expect($('.infobox').hasClass('hidden')).toEqual(false);
+                expect($('.move-grid').hasClass('hidden')).toEqual(true);
+            });
+        });
+        describe("on diagonal from top left to bottom right (vice versa)", function() {
+            beforeEach(function() {
+                $("#grid-2-0").data('active', true).addClass(player_id);
+                $("#grid-3-1").data('active', true).addClass(player_id);
+                $("#grid-4-2").data('active', true).addClass(player_id);
+                $("#grid-5-3").data('active', true).addClass(player_id);
+                gameboard.checkWinner();
+            });
+            it("should determine the winnner", function() {
+                expect(gameboard.winner.id).toEqual(player_id);
+            });
+            it("should end the game and show the winner", function() {
+                expect($('.infobox').hasClass('hidden')).toEqual(false);
+                expect($('.move-grid').hasClass('hidden')).toEqual(true);
+            });
+        });
+        describe("on diagonal from top right to bottom left (vice versa)", function() {
+            beforeEach(function() {
+                $("#grid-2-6").data('active', true).addClass(player_id);
+                $("#grid-3-5").data('active', true).addClass(player_id);
+                $("#grid-4-4").data('active', true).addClass(player_id);
+                $("#grid-5-3").data('active', true).addClass(player_id);
+                gameboard.checkWinner();
+            });
+            it("should determine the winnner", function() {
+                expect(gameboard.winner.id).toEqual(player_id);
+            });
+            it("should end the game and show the winner", function() {
+                expect($('.infobox').hasClass('hidden')).toEqual(false);
+                expect($('.move-grid').hasClass('hidden')).toEqual(true);
+            });
+        });
+    });
 
-                it("should end the game and show the winner", function() {
-                    expect($('.infobox').hasClass('hidden')).toEqual(false);
-                    expect($('.move-grid').hasClass('hidden')).toEqual(true);
-                });
-            });
-            describe("on vertical", function() {
-                beforeEach(function() {
-                    $("#grid-2-5").data('active', true).addClass(player_id);
-                    $("#grid-2-4").data('active', true).addClass(player_id);
-                    $("#grid-2-3").data('active', true).addClass(player_id);
-                    $("#grid-2-2").data('active', true).addClass(player_id);
-                    gameboard.checkWinner();
-                });
-                it("should determine the winnner", function() {
-                    expect(gameboard.winner.id).toEqual(player_id);
-                });
-                it("should end the game and show the winner", function() {
-                    expect($('.infobox').hasClass('hidden')).toEqual(false);
-                    expect($('.move-grid').hasClass('hidden')).toEqual(true);
-                });
-            });
-            describe("on diagonal from top left to bottom right (vice versa)", function() {
-                beforeEach(function() {
-                    $("#grid-2-0").data('active', true).addClass(player_id);
-                    $("#grid-3-1").data('active', true).addClass(player_id);
-                    $("#grid-4-2").data('active', true).addClass(player_id);
-                    $("#grid-5-3").data('active', true).addClass(player_id);
-                    gameboard.checkWinner();
-                });
-                it("should determine the winnner", function() {
-                    expect(gameboard.winner.id).toEqual(player_id);
-                });
-                it("should end the game and show the winner", function() {
-                    expect($('.infobox').hasClass('hidden')).toEqual(false);
-                    expect($('.move-grid').hasClass('hidden')).toEqual(true);
-                });
-            });
-            describe("on diagonal from top right to bottom left (vice versa)", function() {
-                beforeEach(function() {
-                    $("#grid-2-6").data('active', true).addClass(player_id);
-                    $("#grid-3-5").data('active', true).addClass(player_id);
-                    $("#grid-4-4").data('active', true).addClass(player_id);
-                    $("#grid-5-3").data('active', true).addClass(player_id);
-                    gameboard.checkWinner();
-                });
-                it("should determine the winnner", function() {
-                    expect(gameboard.winner.id).toEqual(player_id);
-                });
-                it("should end the game and show the winner", function() {
-                    expect($('.infobox').hasClass('hidden')).toEqual(false);
-                    expect($('.move-grid').hasClass('hidden')).toEqual(true);
-                });
-            });
-            
+    describe("Showing infobox", function() {
+        var gameboard;
+
+        beforeEach(function() {
+            gameboard = new C4.view.GameboardView();
+        });
+
+        it("should show infobox elements", function() {
+            gameboard.toggleInfobox("hello world");
+            expect($('.move-grid').hasClass('hidden')).toEqual(true);
+            expect($('.infobox').hasClass('hidden')).toEqual(false);
+            expect($('.play-again').hasClass('hidden')).toEqual(false);
+        });
+
+        describe("but message is empty", function() {
+            it("should not show infobox elements", function() {
+                gameboard.toggleInfobox();
+                expect($('.move-grid').hasClass('hidden')).toEqual(false);
+                expect($('.infobox').hasClass('hidden')).toEqual(true);
+                expect($('.play-again').hasClass('hidden')).toEqual(true);
+            })
         });
     });
 });

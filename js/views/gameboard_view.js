@@ -268,14 +268,10 @@ C4.view.GameboardView = (function() {
         },
 
         toggleInfobox: function(msg) {
-            if ($('.infobox').hasClass('hidden')) {
+            if (msg) {
                 $('.move-grid').addClass('hidden');
                 $('.infobox').removeClass('hidden').html(msg);
                 $('.play-again').removeClass('hidden');
-            } else {
-                $('.move-grid').removeClass('hidden');
-                $('.infobox').addClass('hidden').html(msg);
-                $('.play-again').addClass('hidden');
             }
         },
 
