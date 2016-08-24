@@ -13,7 +13,6 @@
     "del": "latest"
   },
   "scripts": {
-    // "start": "node app.js"
-    "start": "bash run.sh prod"
+    "start": "node app.js"
   }
 }
