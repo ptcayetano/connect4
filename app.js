@@ -1,7 +1,7 @@
 var express = require('express'),
     fs = require('fs');
-    
-var app    = express();
+
+var app = express();
     
 app.use(function(req, res, next) {
     res.header('X-Frame-Options', 'DENY');
@@ -12,7 +12,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res){
-    fs.readFile("index.html", "binary", function(err, file) {
+    fs.readFile("public/index.html", "binary", function(err, file) {
         if(err) {
             res.writeHead(500, {"Content-Type": "text/plain"});
             res.write(err + "\n");

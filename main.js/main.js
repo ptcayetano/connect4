@@ -1,0 +1,2 @@
+var C4={view:{},model:{}};$(document).ready(function(){Utils.debug("Connect4 has started.");new C4.view.GameboardView});
+var Utils={debug:function(){for(var e=arguments.length,r=0;r<e;r++){var t=arguments[r];switch(typeof t){case"object":console.dir(t);break;case"string":console.log(t)}}}};String.prototype.replaceAll=function(e,r){var t=this;return t.replace(new RegExp(e,"g"),r)};

@@ -4,8 +4,14 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.14.2",
-    "express": "~4"
-},
+    "express": "~4",
+    "gulp": "latest",
+    "gulp-util": "latest",
+    "gulp-rename": "latest",
+    "gulp-uglify": "latest",
+    "gulp-concat": "latest",
+    "del": "latest"
+  },
   "scripts": {
     "start": "node app.js"
   }
